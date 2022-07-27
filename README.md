@@ -1,1 +1,1 @@
-# Estoque
+# Projeto para estudos
