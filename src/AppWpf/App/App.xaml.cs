@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Windows;
 using AppWpf.Produtos;
+using Estoque.Core.Communication.Mediator;
 using Estoque.Produto.Api.Application;
 using Estoque.Produto.Api.Data;
 using FluentValidation;
@@ -35,6 +36,8 @@ namespace AppWpf
             {
                 config.AsScoped();
             }, Assembly.Load("Estoque.Produto.Api"));
+
+            serviceCollection.AddScoped<IMediatorHandler, MediatorHandler>();
 
             serviceCollection.AddDbContext<ProdutoContext>(o =>
                 o.UseNpgsql(Configuration.GetConnectionString("Dados"))

@@ -1,4 +1,5 @@
 ﻿using System.Reflection.Metadata.Ecma335;
+using Estoque.Core.Communication.Mediator;
 using Estoque.Core.Messages;
 using Estoque.Produto.Api.Data;
 using Estoque.Produto.Api.Domain;
@@ -10,12 +11,12 @@ namespace Estoque.Produto.Api.Application;
 public class ProdutoAppService : IProdutoAppService
 {
     private readonly ProdutoContext _produtoContext;
-    private readonly IMediator _mediator;
+    private readonly IMediatorHandler _mediatorHandler;
 
-    public ProdutoAppService(ProdutoContext produtoContext, IMediator mediator)
+    public ProdutoAppService(ProdutoContext produtoContext, IMediatorHandler mediatorHandler)
     {
         _produtoContext = produtoContext;
-        _mediator = mediator;
+        _mediatorHandler = mediatorHandler;
     }
 
     public async Task<IEnumerable<ProdutoViewModel>> ObterProdutos()
@@ -25,22 +26,22 @@ public class ProdutoAppService : IProdutoAppService
 
     public async Task<GenericResponse> AdicionarProduto(ProdutoViewModel produtoViewModel)
     {
-        return await _mediator.Send(new CadastrarProdutoCommand
+        return await _mediatorHandler.EnviarComando(new CadastrarProdutoCommand
         {
             UnidadeMedida = produtoViewModel.UnidadeMedida,
             PrecoVenda = produtoViewModel.PrecoVenda,
             Nome = produtoViewModel.Nome
-        }, CancellationToken.None);
+        });
     }
 
     public async Task<GenericResponse> AtualizarProduto(ProdutoViewModel produtoViewModel)
     {
-        return await _mediator.Send(new AlterarProdutoCommand
+        return await _mediatorHandler.EnviarComando(new AlterarProdutoCommand
         {
             Id = produtoViewModel.Id,
             UnidadeMedida = produtoViewModel.UnidadeMedida,
             PrecoVenda = produtoViewModel.PrecoVenda,
             Nome = produtoViewModel.Nome
-        }, CancellationToken.None);
+        });
     }
 }
