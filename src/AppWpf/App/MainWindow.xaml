@@ -1,0 +1,29 @@
+﻿<hc:Window x:Class="AppWpf.MainWindow"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:hc="https://handyorg.github.io/handycontrol"
+               Style="{StaticResource WindowWin10}"
+               mc:Ignorable="d"
+               WindowStartupLocation="CenterScreen"
+               MinHeight="680"
+               MinWidth="980"
+               WindowState="Maximized"
+               Title="Sistema controle">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Produtos">
+                <MenuItem Header="Novo Produto" Click="NovoProduto_Click"/>
+                <MenuItem Header="Listar Produtos" Click="ListarProdutos_Click"/>
+            </MenuItem>
+        </Menu>
+        <StackPanel x:Name="Conteudo" Grid.Row="1">
+        </StackPanel>
+    </Grid>
+</hc:Window>

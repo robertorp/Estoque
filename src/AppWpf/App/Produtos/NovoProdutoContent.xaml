@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="AppWpf.Produtos.NovoProdutoContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AppWpf.Produtos"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:controles="clr-namespace:AppWpf.Controles"
+             xmlns:ferramentas="clr-namespace:AppWpf.Ferramentas"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <hc:DialogContainer>
+        <hc:TransitioningContentControl>
+            <hc:ScrollViewer IsInertiaEnabled="True" Margin="32">
+                <StackPanel>
+                    <TextBlock>Nome</TextBlock>
+                    <hc:TextBox Text="{Binding Nome}"></hc:TextBox>
+
+                    <TextBlock>Unidade Medida</TextBlock>
+                    <hc:TextBox Text="{Binding UnidadeMedida}"></hc:TextBox>
+
+                    <TextBlock>Preço Venda</TextBlock>
+                    <controles:DecimalTextBox Text="{Binding PrecoVenda}" Style="{StaticResource TextBoxBaseBaseStyle}"></controles:DecimalTextBox>
+
+                    <Button 
+                        ferramentas:VisibilityHelper.IsVisible="{Binding EstaAdicionarProduto}"
+                        Margin="0, 32,0,0" Style="{StaticResource ButtonPrimary}" Command="{Binding AdicionarProdutoCommand}">Adicionar produto</Button>
+                    <Button 
+                        ferramentas:VisibilityHelper.IsVisible="{Binding EstaAlterarProduto}"
+                        Margin="0, 32,0,0" Style="{StaticResource ButtonPrimary}" Command="{Binding AlterarProdutoCommand}">Alterar produto</Button>
+                </StackPanel>
+            </hc:ScrollViewer>
+        </hc:TransitioningContentControl>
+    </hc:DialogContainer>
+</UserControl>
